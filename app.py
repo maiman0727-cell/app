@@ -12,13 +12,13 @@ def load_lottieurl(url: str):
     return r.json()
 
 # ---------------------------
-# Load animations (placeholders – replace URLs from lottiefiles.com)
+# Load animations (working URLs)
 # ---------------------------
-bear_attack = load_lottieurl("https://assets2.lottiefiles.com/packages/lf20_9xcyig6e.json")
-snake_drop  = load_lottieurl("https://assets2.lottiefiles.com/packages/lf20_bHWmMT.json")
-landslide   = load_lottieurl("https://assets2.lottiefiles.com/packages/lf20_t24tpvcu.json")
+bear_attack = load_lottieurl("https://assets7.lottiefiles.com/packages/lf20_jtbfg2nb.json")
+snake_drop  = load_lottieurl("https://assets9.lottiefiles.com/packages/lf20_oGlWy5.json")
+landslide   = load_lottieurl("https://assets7.lottiefiles.com/packages/lf20_t24tpvcu.json")
 victory     = load_lottieurl("https://assets2.lottiefiles.com/packages/lf20_q5pk6p1k.json")
-game_over   = load_lottieurl("https://assets2.lottiefiles.com/packages/lf20_jtbfg2nb.json")
+game_over   = load_lottieurl("https://assets2.lottiefiles.com/packages/lf20_9xcyig6e.json")
 
 # ---------------------------
 # Session state
@@ -44,7 +44,10 @@ def restart():
 def play_level(level):
     if level == 1:
         st.header("🌙 Level 1: The Bear")
-        st_lottie(bear_attack, height=300, key="bear")
+        if bear_attack:
+            st_lottie(bear_attack, height=300, key="bear")
+        else:
+            st.warning("⚠️ Bear animation failed to load")
         st.write("A bear charges at you! What will you do?")
         col1, col2, col3, col4 = st.columns(4)
         with col1:
@@ -62,7 +65,10 @@ def play_level(level):
 
     elif level == 2:
         st.header("🐍 Level 2: The Snake")
-        st_lottie(snake_drop, height=300, key="snake")
+        if snake_drop:
+            st_lottie(snake_drop, height=300, key="snake")
+        else:
+            st.warning("⚠️ Snake animation failed to load")
         st.write("A snake drops from the trees! What will you do?")
         col1, col2, col3, col4 = st.columns(4)
         with col1:
@@ -80,7 +86,10 @@ def play_level(level):
 
     elif level == 3:
         st.header("⛰️ Level 3: Landslide")
-        st_lottie(landslide, height=300, key="landslide")
+        if landslide:
+            st_lottie(landslide, height=300, key="landslide")
+        else:
+            st.warning("⚠️ Landslide animation failed to load")
         st.write("The mountain is collapsing! What will you do?")
         col1, col2, col3, col4 = st.columns(4)
         with col1:
@@ -103,13 +112,16 @@ st.title("🌌 Endless Jungle Night (Demo v1)")
 
 if st.session_state.game_over:
     st.error("☠️ The jungle has claimed you...")
-    st_lottie(game_over, height=250, key="over")
+    if game_over:
+        st_lottie(game_over, height=250, key="over")
     st.button("🔄 Restart", on_click=restart)
 
 elif st.session_state.victory:
     st.success("🌞 You survived the Jungle Night!")
-    st_lottie(victory, height=250, key="victory")
+    if victory:
+        st_lottie(victory, height=250, key="victory")
     st.button("🔄 Restart", on_click=restart)
 
 else:
     play_level(st.session_state.level)
+
