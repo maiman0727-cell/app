@@ -12,13 +12,13 @@ def load_lottieurl(url: str):
     return r.json()
 
 # ---------------------------
-# Load animations (working URLs)
+# Load animations (your chosen set)
 # ---------------------------
-bear_attack = load_lottieurl("https://assets7.lottiefiles.com/packages/lf20_jtbfg2nb.json")
-snake_drop  = load_lottieurl("https://assets9.lottiefiles.com/packages/lf20_oGlWy5.json")
-landslide   = load_lottieurl("https://assets7.lottiefiles.com/packages/lf20_t24tpvcu.json")
-victory     = load_lottieurl("https://assets2.lottiefiles.com/packages/lf20_q5pk6p1k.json")
-game_over   = load_lottieurl("https://assets2.lottiefiles.com/packages/lf20_9xcyig6e.json")
+bear_attack = load_lottieurl("https://lottie.host/6ad9a891-4efc-4f6a-8962-0f612cb6ec65/w6vP4vXhVR.json")
+snake_drop  = load_lottieurl("https://lottie.host/8b9e92fd-9b58-482b-a4a2-3cce30a3c2fa/1BwnXKw53G.json")
+landslide   = load_lottieurl("https://lottie.host/52a98672-944e-4eb3-8e4e-43bbd9866f68/Zv6jQtvF2u.json")
+victory     = load_lottieurl("https://lottie.host/1ef42a32-bb25-4474-a31a-f4a9b8c25b69/QQfM0gF6Q0.json")
+game_over   = load_lottieurl("https://lottie.host/4b3fdf5a-4084-437e-b6c3-573a1a233acd/Rm4KqWbN2p.json")
 
 # ---------------------------
 # Session state
@@ -124,4 +124,3 @@ elif st.session_state.victory:
 
 else:
     play_level(st.session_state.level)
-
